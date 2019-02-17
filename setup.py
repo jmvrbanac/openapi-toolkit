@@ -25,6 +25,7 @@ setup(
     keywords='openapi toolkit resolver validator',
     packages=find_packages(exclude=['contrib', 'docs', 'test*']),
     install_requires=[
+        'alchemize',
         'ruamel.yaml',
         'jsonschema',
     ],
