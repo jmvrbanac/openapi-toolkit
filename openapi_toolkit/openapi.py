@@ -85,7 +85,7 @@ class OpenAPI(object):
         self.filename = filename
         self.spec = spec
 
-    def lookup_path(self, path, method=None):
+    def find_path(self, path, method=None):
         path_data = self.spec['paths'].get(path)
 
         if method:
@@ -93,7 +93,7 @@ class OpenAPI(object):
 
         return Path.from_dict(path_data)
 
-    def lookup_input_schema(self, path, method, content_type):
+    def find_input_schema(self, path, method, content_type):
         data = (
             self.spec['paths']
             .get(path, {})

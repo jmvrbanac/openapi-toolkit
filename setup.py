@@ -27,7 +27,7 @@ setup(
     install_requires=[
         'alchemize',
         'ruamel.yaml',
-        'jsonschema',
+        'jsonschema[format]',
     ],
     package_data={},
     data_files=[],
