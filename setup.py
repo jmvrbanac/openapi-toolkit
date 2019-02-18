@@ -29,7 +29,6 @@ setup(
         'ruamel.yaml',
         'jsonschema[format]',
     ],
-    package_data={},
     data_files=[],
     entry_points={
         'console_scripts': [],
