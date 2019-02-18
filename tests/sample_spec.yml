@@ -1,0 +1,66 @@
+openapi: 3.0.1
+servers:
+  - url: '{scheme}://developer.test.com'
+    variables:
+      scheme:
+        description: 'The Data Set API is accessible via https and http'
+        enum:
+          - 'https'
+          - 'http'
+        default: 'https'
+info:
+  description: things and stuff
+  version: 1.0.0
+  title: Things and Stuff API
+  contact:
+    name: Nobody
+    url: 'https://developer.test.com'
+    email: developer@test.com
+tags:
+  - name: quotes
+    description: The quote
+paths:
+  /quote:
+    get:
+      tags:
+        - quotes
+      summary: Get common quote
+      responses:
+        '200':
+          description: Returns the common quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonQuote'
+
+    post:
+      tags:
+        - quotes
+      summary: things
+      description: blarg
+      responses:
+        '201':
+          description: Created quote
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommonQuote'
+        '404':
+          description: No matching record found for the given criteria.
+      requestBody:
+        content:
+          application/json:
+            schema:
+                $ref: '#/components/schemas/CommonQuote'
+components:
+  schemas:
+    CommonQuote:
+      type: object
+      properties:
+        quote:
+          type: string
+        author:
+          type: string
+      required:
+        - quote
+        - author
