@@ -1,7 +1,5 @@
-from collections import OrderedDict
-
-from alchemize import Attr, JsonModel, JsonListModel
-from ruamel.yaml import add_representer, YAML
+from alchemize import Attr, JsonModel
+from ruamel.yaml import YAML
 from ruamel.yaml.representer import RoundTripRepresenter
 
 from openapi_toolkit.resolver import resolve_spec
