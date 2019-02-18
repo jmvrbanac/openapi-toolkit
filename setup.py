@@ -29,6 +29,9 @@ setup(
         'ruamel.yaml',
         'jsonschema[format]',
     ],
+    extras_require={
+        'preprocessor': ['mako'],
+    },
     data_files=[],
     entry_points={
         'console_scripts': [],
