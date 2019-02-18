@@ -31,6 +31,7 @@ setup(
         'ruamel.yaml',
     ],
     data_files=[],
+    include_package_data=True,
     entry_points={
         'console_scripts': [
             'openapi-toolkit=openapi_toolkit.cli:app',
