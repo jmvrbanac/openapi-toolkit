@@ -6,7 +6,7 @@ def get_node(path, spec, full_path=None):
 
     spec_item = spec.get(key)
     if not spec_item:
-        raise KeyError('Cannot resolve {}'.format(full_path))
+        raise KeyError('Cannot resolve {}'.format(full_path or path))
 
     elif not next_path:
         return spec_item
