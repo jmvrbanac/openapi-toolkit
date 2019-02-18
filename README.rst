@@ -26,6 +26,5 @@ Commandline Usage
       -h, --help            show this help message and exit
       --preprocessor {mako}
                             Enable a preprocessor to use on the specification.
-                            Requires openapi-toolkit['preprocessor'].
       --save-path SAVE_PATH
                             Path to save resolved content.

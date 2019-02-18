@@ -26,12 +26,10 @@ setup(
     packages=find_packages(exclude=['contrib', 'docs', 'test*']),
     install_requires=[
         'alchemize',
-        'ruamel.yaml',
         'jsonschema[format]',
+        'mako',
+        'ruamel.yaml',
     ],
-    extras_require={
-        'preprocessor': ['mako'],
-    },
     data_files=[],
     entry_points={
         'console_scripts': [

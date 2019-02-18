@@ -16,7 +16,7 @@ def expanded_format(validator, format, instance, schema):
             yield ValidationError(error.message, cause=error.cause)
 
 
-class JsonSchemaManager(object):
+class JsonSchema(object):
     def __init__(self, formats=None, validators=None):
         self.CustomValidator = jsonschema.validators.create(
             meta_schema=jsonschema.Draft4Validator.META_SCHEMA,
