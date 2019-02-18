@@ -34,6 +34,8 @@ setup(
     },
     data_files=[],
     entry_points={
-        'console_scripts': [],
+        'console_scripts': [
+            'openapi-toolkit=openapi_toolkit.cli:app',
+        ],
     },
 )
