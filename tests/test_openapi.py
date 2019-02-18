@@ -26,3 +26,14 @@ def test_loading_openapi(spec):
         },
         'required': ['quote', 'author'],
     }
+
+
+def test_saving_resolved_spec(spec, tmpdir):
+    tmp_path = str(tmpdir.join('test.yml'))
+    spec.save(tmp_path)
+
+    # Make sure all refs have been resolved
+    assert '$ref' not in tmpdir.join('test.yml').read()
+
+    # Reload to make sure it generated validate data
+    OpenAPI.load(tmp_path)
