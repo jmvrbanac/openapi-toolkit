@@ -1,7 +1,6 @@
 from alchemize import Attr, JsonModel
-from ruamel.yaml import YAML
-from ruamel.yaml.representer import RoundTripRepresenter
 
+from openapi_toolkit import yaml
 from openapi_toolkit.resolver import resolve_spec
 from openapi_toolkit.schemas import validate_spec
 
@@ -18,11 +17,6 @@ http_codes = [
 
     '500', '501', '502', '503', '504', '505', '507', '508', '511',
 ]
-
-
-class CustomRepresenter(RoundTripRepresenter):
-    def ignore_aliases(self, _data):
-        return True
 
 
 class Parameter(JsonModel):
@@ -81,10 +75,10 @@ class Path(JsonModel):
 class OpenAPI(object):
     def __init__(self, filename, spec):
         self.filename = filename
-        self.spec = spec
+        self.specification = spec
 
     def find_path(self, path, method=None):
-        path_data = self.spec['paths'].get(path)
+        path_data = self.specification['paths'].get(path)
 
         if method:
             return Operation.from_dict(path_data.get(method))
@@ -93,7 +87,7 @@ class OpenAPI(object):
 
     def find_input_schema(self, path, method, content_type):
         data = (
-            self.spec['paths']
+            self.specification['paths']
             .get(path, {})
             .get(method, {})
             .get('requestBody', {})
@@ -116,8 +110,6 @@ class OpenAPI(object):
             if preprocessor:
                 raw = preprocessor.handle(raw)
 
-            yaml = YAML()
-            yaml.Representer = CustomRepresenter
             data = yaml.load(raw)
 
             if resolve:
@@ -130,7 +122,4 @@ class OpenAPI(object):
 
     def save(self, filename):
         with open(filename, 'w') as fp:
-            yaml = YAML(typ='safe')
-            yaml.default_flow_style = False
-            yaml.Representer = CustomRepresenter
-            yaml.dump(self.spec, stream=fp)
+            yaml.dump(self.specification, stream=fp)
