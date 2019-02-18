@@ -1,5 +1,8 @@
 OpenAPI Toolkit
 ===============
+.. image:: https://readthedocs.org/projects/openapi-toolkit/badge/?version=latest
+    :target: https://openapi-toolkit.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 OpenAPI Toolkit is currently an experimental project to streamline handling
 and workarounds related to using OpenAPI in your applications.
