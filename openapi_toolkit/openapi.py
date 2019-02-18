@@ -78,6 +78,7 @@ class OpenAPI(object):
         self.specification = spec
 
     def find_path(self, path, method=None):
+        """Searches for Path data (incomplete)"""
         path_data = self.specification['paths'].get(path)
 
         if method:
@@ -86,6 +87,7 @@ class OpenAPI(object):
         return Path.from_dict(path_data)
 
     def find_input_schema(self, path, method, content_type):
+        """Searches for a request body schema by path, method, and content_type"""
         data = (
             self.specification['paths']
             .get(path, {})
@@ -104,6 +106,7 @@ class OpenAPI(object):
 
     @classmethod
     def load(cls, filename, preprocessor=None, resolve=True, validate=True):
+        """Loads an OpenAPI Specification from a file"""
         with open(filename) as fp:
             raw = fp.read()
 
@@ -121,5 +124,6 @@ class OpenAPI(object):
             return cls(filename, data)
 
     def save(self, filename):
+        """Save the loaded OpenAPI specification to a file"""
         with open(filename, 'w') as fp:
             yaml.dump(self.specification, stream=fp)
