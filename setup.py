@@ -7,7 +7,7 @@ with open('README.rst') as f:
 
 setup(
     name='openapi-toolkit',
-    version='0.1.0',
+    version='0.1.1',
     description=('Collection of utilities for OpenAPIs'),
     long_description=desc,
     url='https://github.com/jmvrbanac/openapi-toolkit',
