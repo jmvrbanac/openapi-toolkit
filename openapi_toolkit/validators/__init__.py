@@ -28,6 +28,7 @@ class JsonSchema(object):
         )
 
     def validate(self, schema, value):
+        """Validates a value against a schema defintion"""
         validator = self.CustomValidator(schema, format_checker=schema_format)
         return validator.validate(value)
 

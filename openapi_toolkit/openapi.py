@@ -73,6 +73,7 @@ class Path(JsonModel):
 
 
 class OpenAPI(object):
+    """OpenAPI Specification Manager"""
     def __init__(self, filename, spec):
         self.filename = filename
         self.specification = spec

@@ -3,6 +3,7 @@ from mako.lookup import TemplateLookup
 
 
 class MakoPreprocessor(object):
+    """Mako Preprocessor Handler"""
     def __init__(self, directories=None, module_directory=None):
         self.lookup = None
         if directories:
@@ -12,6 +13,7 @@ class MakoPreprocessor(object):
             )
 
     def handle(self, raw):
+        """Contractual handle method"""
         return Template(
             text=raw,
             lookup=self.lookup,
