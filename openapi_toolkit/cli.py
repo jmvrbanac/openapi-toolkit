@@ -1,6 +1,7 @@
 import argparse
 
 from openapi_toolkit import OpenAPI, yaml
+from openapi_toolkit.preprocessor import MakoPreprocessor
 
 
 def app(argv=None):
@@ -19,6 +20,16 @@ def app(argv=None):
         )
     )
     resolve_parser.add_argument(
+        '--mako-template-dir',
+        type=str,
+        help='Template lookup directory for Mako Preprocessor',
+    )
+    resolve_parser.add_argument(
+        '--mako-module-dir',
+        type=str,
+        help='Module lookup directory for Mako Preprocessor',
+    )
+    resolve_parser.add_argument(
         '--save-path',
         type=str,
         help='Path to save resolved content.'
@@ -30,9 +41,19 @@ def app(argv=None):
 
         preprocessor = None
         if args.preprocessor:
-            # Import here to avoid requiring the dep all the time
-            from openapi_toolkit.preprocessor import MakoPreprocessor
-            preprocessor = MakoPreprocessor()
+            lookup_dir = None
+            module_dir = None
+
+            if args.mako_template_dir:
+                lookup_dir = [args.mako_template_dir]
+
+            if args.mako_module_dir:
+                module_dir = args.mako_module_dir
+
+            preprocessor = MakoPreprocessor(
+                directories=lookup_dir,
+                module_directory=module_dir,
+            )
 
         spec = OpenAPI.load(args.filename, preprocessor=preprocessor)
 
